@@ -17,7 +17,7 @@ OUT_DIR = os.getcwd() + '/out'
 def remove_text(text_to_remove='CIG',
                 deliminator='|',
                 file_to_exclude='CIMO.NONDERIV.position.dat',
-                index_columns_to_edit_for_exclustion=[1, -2]):
+                index_columns_to_edit=[0, -2]):
     os.makedirs(IN_DIR, exist_ok=True)
     os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -31,7 +31,7 @@ def remove_text(text_to_remove='CIG',
                     for line in file.readlines():
                         if file_pattern.lower() == file_to_exclude.lower():
                             row = line.split(deliminator)
-                            for index in index_columns_to_edit_for_exclustion:
+                            for index in index_columns_to_edit:
                                 row[index] = row[index].replace(text_to_remove, '')
                             temp += deliminator.join(row)
                         else:
